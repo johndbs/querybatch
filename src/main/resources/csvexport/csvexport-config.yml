@@ -1,0 +1,52 @@
+export:
+  name: travels
+  filename:
+    template: <startdate>_travels_export.csv
+    parameters:
+      - name: startdate
+        origin:
+          type: inputs
+          name: startdate
+    format: yyyy-MM-dd
+  columns:
+    - name: start
+      position: 0
+      label: start date
+      origin:
+        type: inputs
+        name: startdate
+      format: yyyy-MM-dd
+    - name: end
+      position: 1
+      label: end date
+      origin:
+        type: inputs
+        name: enddate
+      format: yyyy-MM-dd
+    - name: nbitems
+      position: 2
+      label: number of items
+      origin:
+        type: queries
+        name: travel_count
+  inputs:
+    - name: startdate
+      type: LocalDateTime
+    - name: enddate
+      type: LocalDateTime
+
+  queries:
+    - name: travel_count
+      sql: select count(1) from travel3 where travelDate >= :startdate and travelDate <:enddate
+      parameters:
+        - name: startdate
+          origin:
+            type: inputs
+            name: startdate
+        - name: enddate
+          origin:
+            type: inputs
+            name: enddate
+      output:
+        result: single
+        type: Long

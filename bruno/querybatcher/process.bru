@@ -1,0 +1,16 @@
+meta {
+  name: process
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:8080/api/query/process?startDate=2024-10-10 00:00:00&endDate=2024-10-11 00:00:00
+  body: none
+  auth: none
+}
+
+query {
+  startDate: 2024-10-10 00:00:00
+  endDate: 2024-10-11 00:00:00
+}
